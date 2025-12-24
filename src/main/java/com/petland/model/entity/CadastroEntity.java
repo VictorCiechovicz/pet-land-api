@@ -1,6 +1,8 @@
-package com.petland.model;
+package com.petland.model.entity;
 
 
+import com.petland.model.dto.EnderecoDTO;
+import com.petland.model.dto.PerfilDTO;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -9,7 +11,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "tab_cadastro")
 @Data
-public class Cadastro {
+public class CadastroEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +22,10 @@ public class Cadastro {
     private String nome;
 
     @Embedded
-    private Perfil perfil;
+    private PerfilDTO perfilDTO;
 
     @Embedded
-   private Endereco endereco;
+   private EnderecoDTO enderecoDTO;
 
 
 }

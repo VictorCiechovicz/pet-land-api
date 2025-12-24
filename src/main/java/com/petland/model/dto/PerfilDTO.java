@@ -1,6 +1,6 @@
-package com.petland.model;
+package com.petland.model.dto;
 
-public class Perfil {
+public class PerfilDTO {
 
     private boolean fornecedor;
     private boolean cliente;

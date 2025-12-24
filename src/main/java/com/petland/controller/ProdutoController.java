@@ -1,6 +1,6 @@
 package com.petland.controller;
 
-import com.petland.model.ProdutoServico;
+import com.petland.model.entity.ProdutoServicoEntity;
 import com.petland.repository.ProdutoServicoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,32 +19,32 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public List<ProdutoServico> listar() {
+    public List<ProdutoServicoEntity> listar() {
         return produtoServicoRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProdutoServico> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<ProdutoServicoEntity> buscarPorId(@PathVariable Integer id) {
         return produtoServicoRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoServico> criar(@RequestBody ProdutoServico produtoServico) {
-        ProdutoServico salvo = produtoServicoRepository.save(produtoServico);
+    public ResponseEntity<ProdutoServicoEntity> criar(@RequestBody ProdutoServicoEntity produtoServicoEntity) {
+        ProdutoServicoEntity salvo = produtoServicoRepository.save(produtoServicoEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoServico> atualizar(@PathVariable Integer id,
-                                                     @RequestBody ProdutoServico produtoServico) {
+    public ResponseEntity<ProdutoServicoEntity> atualizar(@PathVariable Integer id,
+                                                          @RequestBody ProdutoServicoEntity produtoServicoEntity) {
         return produtoServicoRepository.findById(id)
                 .map(existente -> {
-                    existente.setNome(produtoServico.getNome());
-                    existente.setValor(produtoServico.getValor());
-                    existente.setServico(produtoServico.getServico());
-                    ProdutoServico atualizado = produtoServicoRepository.save(existente);
+                    existente.setNome(produtoServicoEntity.getNome());
+                    existente.setValor(produtoServicoEntity.getValor());
+                    existente.setServico(produtoServicoEntity.getServico());
+                    ProdutoServicoEntity atualizado = produtoServicoRepository.save(existente);
                     return ResponseEntity.ok(atualizado);
                 })
                 .orElse(ResponseEntity.notFound().build());

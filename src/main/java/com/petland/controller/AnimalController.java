@@ -2,21 +2,21 @@ package com.petland.controller;
 
 import java.util.List;
 
+import com.petland.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.petland.model.Animal;
+import com.petland.model.entity.AnimalEntity;
 import com.petland.repository.AnimalRepository;
 
 @RestController
 public class AnimalController {
 
-    @Autowired
-    private AnimalRepository animalRepository;
+   private AnimalService animalService;
 
     @GetMapping("/animais")
-    public List<Animal> listar(){
-        return animalRepository.findAll();
+    public List<AnimalEntity> listar(){
+        return animalService.findAllAnimals();
     }
 }

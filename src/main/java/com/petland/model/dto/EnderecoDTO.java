@@ -1,10 +1,10 @@
-package com.petland.model;
+package com.petland.model.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class Endereco {
+public class EnderecoDTO {
 
     @Column(name="logra",length = 50)
     private String logradouro;
