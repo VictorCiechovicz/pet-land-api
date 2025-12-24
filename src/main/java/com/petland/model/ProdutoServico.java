@@ -18,11 +18,8 @@ public class ProdutoServico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Integer id;
-
     @Column(length = 50, nullable = false)
     private String nome;
-
     private Double valor;
-
     private Boolean servico;
 }
